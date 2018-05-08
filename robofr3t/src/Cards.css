@@ -1,5 +1,6 @@
 .card{
     background-color: #fce26c;
+    border-radius: 7px;
 }
 .card-photo{
     max-width: 90%;
