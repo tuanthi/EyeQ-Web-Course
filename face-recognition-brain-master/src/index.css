@@ -1,0 +1,10 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Courier New", Courier, monospace;
+  background: #232741; /* w3c */
+}
+
+button {
+  cursor: pointer;
+}
