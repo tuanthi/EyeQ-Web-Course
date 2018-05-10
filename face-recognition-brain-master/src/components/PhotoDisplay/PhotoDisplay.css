@@ -1,0 +1,17 @@
+.bounding-box {
+  position: absolute;
+  box-shadow: 0 0 0 3px #149df2 inset;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  cursor: pointer;
+  animation: blink 0.4s ease-in-out alternate infinite;
+}
+.photo-container{
+    height: 80%;
+    align-items: center;
+}
+@keyframes blink{
+    0%{opacity: 0.5;}
+    100%{opacity: 1;}
+}

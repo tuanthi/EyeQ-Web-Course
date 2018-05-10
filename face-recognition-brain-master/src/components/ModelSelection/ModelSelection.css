@@ -1,0 +1,11 @@
+.model-container{
+    background-color: rgba(29, 33, 56, 0.1);
+    height: 50px;
+}
+.model-txt{
+    font-stretch: expanded;
+}
+.model-txt:hover, p.model-txt-active{
+    border-bottom: solid gray 2px;
+    color: white;
+}

@@ -1,0 +1,8 @@
+.header-container{
+    background-color: #f7fbff;
+    position: sticky;
+    z-index: 99;
+    top: 0;
+    border-bottom: solid lightgray 1px;
+    height: 3.6rem;
+}
