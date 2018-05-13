@@ -1,0 +1,10 @@
+.nav-menu-txt{
+    font-stretch: condensed;
+    margin-right: 25px;
+}
+.nav-menu-txt:hover{
+    border-bottom: solid light-gray 2px;
+}
+.nav-greet-txt{
+    line-height: 28px;
+}

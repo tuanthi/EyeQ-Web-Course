@@ -1,0 +1,15 @@
+.rcontent-title{
+    border-bottom: solid 1px #e4e4e4;
+}
+.rcontent-container{
+    overflow-y: auto;
+}
+
+/* Model */
+.rcontent-general-item, .rcontent-travel-item, .rcontent-dg-item{
+    border-bottom: solid 1px #e4e4e4;
+}
+.rcontent-general-title, .rcontent-travel-title{
+    border-bottom: solid 2px gray;
+}
+/* End Model */
