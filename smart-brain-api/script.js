@@ -20,7 +20,7 @@ app.use(cors())
 app.use(express.json());
 
 app.get('/', (req, res)=> {
-  res.send(db.users);
+  res.send('server running on '+process.env.PORT);
 })
 
 app.get('/test', (req, res)=>{
