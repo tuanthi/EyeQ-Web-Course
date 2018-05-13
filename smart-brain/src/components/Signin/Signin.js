@@ -36,6 +36,9 @@ class Signin extends React.Component {
         else if (user && user==='WCRED'){
             this.setState({loginMess: 'Invalid email or password!'});
         }
+        else if (user && user==='EMPTY'){
+            this.setState({loginMess: 'Empty email or password'});
+        }
       })
   }
 

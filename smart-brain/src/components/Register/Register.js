@@ -42,6 +42,9 @@ class Register extends React.Component {
         else if (user && user.name==="error" && user.code==="23505"){
             this.setState({regMess: 'This email has been already used!'})
         }
+        else if (user && user==='EMPTY'){
+            this.setState({regMess: 'All fields must be filled'})
+        }
       })
   }
 

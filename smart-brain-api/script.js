@@ -37,6 +37,8 @@ app.post('/test2', (req, res)=>{
 })
 
 app.post('/signin', (req, res) => {
+    if (!req.body.email || !req.body.password)
+        return res.status(400).json("EMPTY");
   db.select('lg_usemail', 'lg_hash').from('elogin')
     .where('lg_usemail', '=', req.body.email)
     .then(data => {
@@ -58,6 +60,8 @@ app.post('/signin', (req, res) => {
 app.post('/register', (req, res) => {
   const { email, name, password } = req.body;
   const hash = bcrypt.hashSync(password);
+  if (!email || !name || !password)
+    return res.status(400).json('EMPTY');
     db.transaction(trx => {
       trx.insert({
         lg_hash: hash,
@@ -105,6 +109,6 @@ app.put('/image', (req, res) => {
   .catch(err => res.status(400).json('unable to get entries'))
 })
 
-app.listen(2808, ()=> {
-  console.log('app is running on port 2808');
+app.listen(process.env.PORT || 2808, ()=> {
+  console.log(`app is running on port ${process.env.PORT}`);
 })
