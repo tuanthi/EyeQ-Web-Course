@@ -17,7 +17,7 @@ app.use(cors())
 app.use(express.json());
 
 app.get('/', (req, res)=> {
-  res.send('server running on '+process.env.PORT);
+  res.send('server running on '+process.env.PORT+' '+process.env.DATABASE_URL);
 })
 
 app.get('/test', (req, res)=>{
