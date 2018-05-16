@@ -21,7 +21,7 @@ app.get('/', (req, res)=> {
 
 app.post('/signin', (req, res) => {
     if (!req.body.email || !req.body.password)
-        return res.status(400).json("errmess": "Invalid email or password!");
+        return res.status(400).json({"errmess": "Invalid email or password!"});
   db.select('lg_usemail', 'lg_hash').from('elogin')
     .where('lg_usemail', '=', req.body.email)
     .then(data => {
