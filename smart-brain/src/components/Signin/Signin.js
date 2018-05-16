@@ -19,7 +19,8 @@ class Signin extends React.Component {
   }
 
   onSubmitSignIn = () => {
-    fetch('https://peaceful-dusk-72411.herokuapp.com/', {
+      this.props.onLoadChange(true);
+    fetch('https://peaceful-dusk-72411.herokuapp.com/signin', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
@@ -33,12 +34,10 @@ class Signin extends React.Component {
           this.props.loadUser(user)
           this.props.onRouteChange('home');
         }
-        else if (user && user==='WCRED'){
-            this.setState({loginMess: 'Invalid email or password!'});
+        else if (user && user.errmess){
+            this.setState({regMess: user.errmess})
         }
-        else if (user && user==='EMPTY'){
-            this.setState({loginMess: 'Empty email or password'});
-        }
+        this.props.onLoadChange(false);
       })
   }
 

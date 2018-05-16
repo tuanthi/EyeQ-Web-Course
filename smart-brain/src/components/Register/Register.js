@@ -24,6 +24,7 @@ class Register extends React.Component {
   }
 
   onSubmitSignIn = () => {
+      this.props.onLoadChange(true);
     fetch('https://peaceful-dusk-72411.herokuapp.com/register', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
@@ -39,12 +40,10 @@ class Register extends React.Component {
           this.props.loadUser(user)
           this.props.onRouteChange('home');
         }
-        else if (user && user.name==="error" && user.code==="23505"){
-            this.setState({regMess: 'This email has been already used!'})
+        else if (user && user.errmess){
+            this.setState({regMess: user.errmess})
         }
-        else if (user && user==='EMPTY'){
-            this.setState({regMess: 'All fields must be filled'})
-        }
+        this.props.onLoadChange(false);
       })
   }
 

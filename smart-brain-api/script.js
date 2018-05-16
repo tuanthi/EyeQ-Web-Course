@@ -1,5 +1,4 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt-nodejs');
 const cors = require('cors');
 const knex = require('knex')
@@ -20,22 +19,9 @@ app.get('/', (req, res)=> {
   res.send('server running on '+process.env.PORT+' '+process.env.DATABASE_URL);
 })
 
-app.get('/test', (req, res)=>{
-    db.select('name').from('testdb')
-        .then(data => {
-            console.log(data);
-            res.json("this is a test");
-        })
-})
-
-app.post('/test2', (req, res)=>{
-    console.log(req.body);
-    res.json('success');
-})
-
 app.post('/signin', (req, res) => {
     if (!req.body.email || !req.body.password)
-        return res.status(400).json("EMPTY");
+        return res.status(400).json("errmess": "Invalid email or password!");
   db.select('lg_usemail', 'lg_hash').from('elogin')
     .where('lg_usemail', '=', req.body.email)
     .then(data => {
@@ -46,12 +32,12 @@ app.post('/signin', (req, res) => {
           .then(user => {
             res.json(user[0])
           })
-          .catch(err => res.status(400).json('unable to get user'))
+          .catch(err => res.status(400).json({"errmess":"unable to get user"}))
       } else {
-        res.status(400).json('WCRED')
+        res.status(400).json({"errmess": "Invalid email or password!"})
       }
     })
-    .catch(err => res.status(400).json('WCRED'))
+    .catch(err => res.status(400).json({"errmess": "Invalid email or password!"}))
 })
 
 app.post('/register', (req, res) => {
@@ -79,7 +65,7 @@ app.post('/register', (req, res) => {
       .then(trx.commit)
       .catch(trx.rollback)
     })
-    .catch(err => res.status(400).json(err))
+    .catch(err => res.status(400).json({"errmess": "This email has been already used!"}))
 })
 
 app.get('/profile/:id', (req, res) => {

@@ -7,6 +7,7 @@ import Rank from './components/Rank/Rank';
 import Register from './components/Register/Register';
 import LeftPane from './components/LeftPane/LeftPane';
 import RightPane from './components/RightPane/RightPane';
+import Loader from './components/Loader/Loader';
 import './App.css';
 
 //You must add your own API key here from Clarifai.
@@ -136,6 +137,7 @@ const initialState = {
     isSignedIn: false,
     currmodel: '',
     respData: [],
+    onLoad: false,
     user: {
       id: '',
       name: '',
@@ -162,14 +164,14 @@ class App extends Component {
 
 
   onModelSelect = (model) => {
-      this.setState({currmodel: model.item});
-      this.setState({imageUrl: this.state.input});
-      console.log(this.state.currmodel);
+      this.setState({currmodel: model.item,
+                    imageUrl: this.state.input,
+                    onLoad: true});
       app.models
         .predict(
           modelMap[model.item],
           this.state.input)
-        .then(response => { this.setState({respData: response}); })
+        .then(response => { this.setState({respData: response, onLoad: false}); })
         .catch(err => console.log(err));
   }
 
@@ -183,13 +185,15 @@ class App extends Component {
 
   onButtonSubmit = () => {
     this.setState({imageUrl: this.state.input});
+    if (!this.state.currmodel) return;
+    this.setState({onLoad: true});
     app.models
       .predict(
         modelMap[this.state.currmodel],
         this.state.input)
       .then(response => {
         if (response) {
-          fetch('https://peaceful-dusk-72411.herokuapp.com/', {
+          fetch('https://peaceful-dusk-72411.herokuapp.com/image', {
             method: 'put',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -202,7 +206,7 @@ class App extends Component {
             })
 
         }
-        this.setState({respData: response});
+        this.setState({respData: response, onLoad: false});
 
       })
       .catch(err => console.log(err));
@@ -210,16 +214,19 @@ class App extends Component {
 
   onRouteChange = (route) => {
     if (route === 'signout') {
-      this.setState({isSignedIn: false})
+      this.setState(initialState)
     } else if (route === 'home') {
       this.setState({isSignedIn: true})
     }
     this.setState({route: route});
   }
 
-  render() {
-    const { isSignedIn, imageUrl, route, box, currmodel, respData, user } = this.state;
+  onLoadChange = (isActive) => {
+      this.setState({onLoad: isActive});
+  }
 
+  render() {
+    const { isSignedIn, imageUrl, route, box, currmodel, respData, user, onLoad } = this.state;
     return (
       <div className="App">
          <Particles className='particles'
@@ -228,8 +235,10 @@ class App extends Component {
         <Header
             isSignedIn={isSignedIn}
             onRouteChange={this.onRouteChange}
+            onLoadChange={this.onLoadChange}
             userinfo={user}
         />
+        <Loader isActive = {onLoad}/>
         { route === 'home'
             ? <div id="body-container">
                 <LeftPane
@@ -244,8 +253,8 @@ class App extends Component {
             </div>
           : (
              route === 'signin' || route === 'signout'
-             ? <Signin loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
-             : <Register loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
+             ? <Signin loadUser={this.loadUser} onRouteChange={this.onRouteChange} onLoadChange={this.onLoadChange}/>
+             : <Register loadUser={this.loadUser} onRouteChange={this.onRouteChange} onLoadChange={this.onLoadChange}/>
             )
         }
       </div>
