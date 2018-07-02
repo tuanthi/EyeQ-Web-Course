@@ -1,17 +1,91 @@
-.bounding-box {
+.bounding-box, #bounding-box {
   position: absolute;
   box-shadow: 0 0 0 3px #149df2 inset;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: left;
   cursor: pointer;
   animation: blink 0.4s ease-in-out alternate infinite;
+}
+.face-mark {
+    position: absolute;
+    padding: 3px;
+    border-radius: 50%;
+    background: #ffffff8a;
+    border: solid 1px #afafaf;
+}
+.face-mark-container {
+    transition: all 0.3s ease-in;
+    visibility: hidden;
+    opacity: 0;
+}
+.bounding-box-container:hover + div {
+    visibility: visible;
+    opacity: 1;
+}
+.bounding-box-id {
+    text-align: left;
+    padding: 2px 4px;
+    background: #ddd;
+    height: fit-content;
+    border-radius: 3px;
+    margin: -5px;
 }
 .photo-container{
     height: 80%;
     align-items: center;
 }
+.frame-container{
+    background: #3d426540;
+    height: 80%;
+}
+.face-row-container{
+    display: grid;
+    position: relative;
+    grid-auto-flow: column;
+    grid-gap: 2px;
+}
+.face-row-container > div{
+    align-self: center;
+    justify-self: center;
+    padding: 6px 10px;
+    width: 60px;
+    text-align: center;
+    border-radius: 999px;
+    position: absolute;
+    left: -20%;
+    background-image: radial-gradient(circle, #b9b9b9, #b0b0b0, #a6a6a6, #9d9d9d, #949494);
+}
+.face-row-container > div:hover{
+    border: solid 2px #888;
+    font-weight: bold;
+}
+#face-new-name{
+    transition: all .2s ease-in-out;
+}
 @keyframes blink{
     0%{opacity: 0.5;}
     100%{opacity: 1;}
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #aaa;
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #888;
 }

@@ -4,12 +4,39 @@
 .rcontent-container{
     overflow-y: auto;
 }
-
+@media (max-width: 600px) {
+    div.rcontent-container{
+        width: 100%;
+    }
+}
 /* Model */
 .rcontent-general-item, .rcontent-travel-item, .rcontent-dg-item{
     border-bottom: solid 1px #e4e4e4;
 }
 .rcontent-general-title, .rcontent-travel-title{
     border-bottom: solid 2px gray;
+}
+.rcontent-result-container {
+    display: grid;
+    grid-template-columns: 80px 15% 80px;
+    grid-template-rows: 130px;
+    grid-column-gap: 2%;
+    justify-content: center;
+    margin-bottom: 20px;
+    border-bottom: solid 1px #e4e4e4;
+}
+.rcontent-result-container._best{
+    border: solid gray 2px;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding-top: 13px;
+}
+.rcontent-result-value{
+    margin-top: 50%;
+    transition: all ease-in-out 0.1s;
+    height: fit-content;
+}
+.rcontent-result-value._best{
+    font-weight: bold;
 }
 /* End Model */

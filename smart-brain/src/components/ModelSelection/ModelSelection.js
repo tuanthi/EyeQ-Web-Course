@@ -2,7 +2,7 @@ import React from 'react';
 import './ModelSelection.css';
 
 const ModelSelection = ({onModelSelect, currmodel}) => {
-    const modelList = ["General", "Color", "Face", "Demographics", "Travel"];
+    const modelList = ["General", "Color", "Demographics", "Travel", "Face (EyeQ)", "Matching (EyeQ)", "Matching2"];
     const isActive = (model) => 'model-txt dib f5 ma2 link moon-gray pa2 pointer ' + ((model===currmodel)?'model-txt-active':'');
     const modelElement = modelList.map((item, id) =>
         <p key={id}

@@ -20,24 +20,25 @@ class Signin extends React.Component {
 
   onSubmitSignIn = () => {
       this.props.onLoadChange(true);
-    fetch('https://peaceful-dusk-72411.herokuapp.com/signin', {
-      method: 'post',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({
-        email: this.state.signInEmail,
-        password: this.state.signInPassword
-      })
+    fetch('https://services.eyeq.tech/back/signin', {
+      method: 'get',
+      headers: {'Authorization': "Basic " + btoa(this.state.signInEmail + ":" + this.state.signInPassword)},
     })
       .then(response => response.json())
       .then(user => {
-        if (user && user.us_id) {
+        if (user && user.token) {
           this.props.loadUser(user)
           this.props.onRouteChange('home');
         }
         else if (user && user.errmess){
-            this.setState({regMess: user.errmess})
+            this.setState({loginMess: user.errmess})
         }
         this.props.onLoadChange(false);
+      })
+      .catch(err =>{
+          this.props.onLoadChange(false);
+          this.setState({loginMess: 'Server error...'})
+          console.log(err);
       })
   }
 

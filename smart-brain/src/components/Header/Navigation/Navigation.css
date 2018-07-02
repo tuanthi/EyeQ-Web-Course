@@ -8,3 +8,12 @@
 .nav-greet-txt{
     line-height: 28px;
 }
+.nav-greet-txt:hover > .nav-lastlg-txt{
+    opacity: 1;
+    visibility: visible;
+}
+.nav-lastlg-txt{
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease-in-out;
+}

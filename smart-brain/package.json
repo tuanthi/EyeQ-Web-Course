@@ -9,10 +9,11 @@
     "react-particles-js": "^2.1.0",
     "react-scripts": "1.0.17",
     "react-tilt": "^0.1.4",
+    "react-webcam": "^0.5.0",
     "tachyons": "^4.9.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "set PORT=2331 && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"

@@ -5,8 +5,13 @@ const Navigation = ({ onRouteChange, isSignedIn, userinfo }) => {
     if (isSignedIn) {
       return (
         <nav style={{marginRight:'20px', display: 'flex', justifyContent: 'flex-end'}}>
-            <p className="nav-greet-txt f5 ma2 b mid-gray pa2">Howdy, {userinfo.name}</p>
-          <p onClick={() => onRouteChange('signout')} className='nav-menu-txt f4 ma2 link dim mid-gray b pa2 pointer'>Sign Out</p>
+            <div className="nav-greet-txt f5 ma2 b mid-gray pa2 relative">
+                <p className="ma0">Howdy, {userinfo.name}</p>
+                <p className="nav-lastlg-txt absolute ma0 f7 pa1 bg-mid-gray near-white br3" style={{width: '200px', left: '-50px'}}>
+                    Last login: {userinfo.lastlogin}
+                </p>
+            </div>
+            <p onClick={() => onRouteChange('signout')} className='nav-menu-txt f4 ma2 link dim mid-gray b pa2 pointer'>Sign Out</p>
         </nav>
       );
     } else {

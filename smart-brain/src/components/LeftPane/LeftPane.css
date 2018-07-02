@@ -5,3 +5,18 @@
     background-color:#708090;
     background-size: 64px 128px
 }
+@media (max-width: 600px) {
+    div.lpane-container{
+        width: 100%;
+        height: auto;
+    }
+    div.model-container{
+        height: auto;
+    }
+    button.input-btn{
+        width: 45%;
+    }
+    button.input-ctrl-btn {
+        width: 30% !important;
+    }
+}

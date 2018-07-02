@@ -25,7 +25,7 @@ class Register extends React.Component {
 
   onSubmitSignIn = () => {
       this.props.onLoadChange(true);
-    fetch('https://peaceful-dusk-72411.herokuapp.com/register', {
+    fetch('https://services.eyeq.tech/back/register', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
@@ -44,6 +44,11 @@ class Register extends React.Component {
             this.setState({regMess: user.errmess})
         }
         this.props.onLoadChange(false);
+      })
+      .catch(err =>{
+          this.props.onLoadChange(false);
+          this.setState({regMess: 'Server error...'})
+          console.log(err);
       })
   }
 
